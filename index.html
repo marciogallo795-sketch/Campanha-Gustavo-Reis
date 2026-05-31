@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Campanha Gustavo Reis · Deputado Estadual 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --az:#0f4c9e;--az2:#0a3270;--az3:#e8f0fc;
+  --vd:#1a7a4a;--vd3:#e6f4ed;
+  --vm:#b83232;--vm3:#fceaea;
+  --am:#d97706;--am3:#fef3e2;
+  --ci:#f4f5f7;--cb:#e2e4e9;
+  --tx:#111827;--tx2:#6b7280;--tx3:#9ca3af;
+  --br:#fff;--r:14px;--rs:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;color:var(--tx);background:#eef0f5;min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--az2);padding:18px 16px 0;position:sticky;top:0;z-index:200}
+.hdr-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.av{width:42px;height:42px;border-radius:50%;background:var(--az);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#fff;flex-shrink:0}
+.hdr-nm{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:#fff;line-height:1.1}
+.hdr-sb{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.badge{font-size:10px;padding:3px 8px;border-radius:20px;background:rgba(26,122,74,.3);color:#6ee7a8;border:.5px solid rgba(110,231,168,.25);font-weight:500;white-space:nowrap;margin-left:auto}
+.nav{display:flex;overflow-x:auto;scrollbar-width:none;padding-bottom:0}
+.nav::-webkit-scrollbar{display:none}
+.nb{flex-shrink:0;padding:10px 16px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:rgba(255,255,255,.45);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nb.on{color:#fff;border-bottom-color:#fff}
+
+/* PAGE */
+.pg{display:none;padding:14px}
+.pg.on{display:block}
+
+/* METRICS */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.mc{background:var(--br);border-radius:var(--r);padding:14px;border:.5px solid var(--cb)}
+.mc.dk{background:var(--az2);border-color:var(--az2)}
+.ml{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2);margin-bottom:4px}
+.mc.dk .ml{color:rgba(255,255,255,.45)}
+.mv{font-size:21px;font-weight:700;font-family:'Syne',sans-serif;color:var(--tx);line-height:1}
+.mc.dk .mv{color:#fff}
+.ms{font-size:11px;color:var(--tx3);margin-top:2px}
+.mc.dk .ms{color:rgba(255,255,255,.35)}
+
+/* SECTION */
+.sec{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx2);margin:16px 0 9px}
+
+/* CARD */
+.card{background:var(--br);border-radius:var(--r);border:.5px solid var(--cb);margin-bottom:10px;overflow:hidden}
+.card-head{padding:13px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid var(--cb)}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--tx)}
+
+/* CITY ROW — clicável */
+.city-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:.5px solid var(--cb);cursor:pointer;transition:background .15s;-webkit-user-select:none;user-select:none}
+.city-row:last-child{border-bottom:none}
+.city-row:active{background:#f0f4ff}
+.city-row:hover{background:#f7f9ff}
+.city-nm{font-size:13px;font-weight:600;color:var(--tx)}
+.city-rg{font-size:10px;color:var(--tx3);margin-top:1px}
+.city-meta{font-size:13px;font-weight:700;color:var(--az);text-align:right}
+.city-sub{font-size:10px;color:var(--tx3);text-align:right;margin-top:1px}
+.pbr{height:4px;background:var(--cb);border-radius:2px;overflow:hidden;margin-top:5px}
+.pbf{height:100%;border-radius:2px}
+.arrow{font-size:12px;color:var(--tx3);margin-left:8px;flex-shrink:0}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);text-align:left;padding:8px 14px;background:var(--ci);border-bottom:.5px solid var(--cb)}
+.tbl td{padding:9px 14px;border-bottom:.5px solid var(--cb);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:active td{background:#f0f4ff}
+.tbl .num{text-align:right}
+.tbl tr.clickable{cursor:pointer}
+.tbl tr.clickable:hover td{background:#f7f9ff}
+
+/* BADGES */
+.ba{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px}
+.ba-a{background:#fef9e7;color:#92400e;border:.5px solid #fde68a}
+.ba-b{background:#eff6ff;color:#1e40af;border:.5px solid #bfdbfe}
+.ba-c{background:#f3f4f6;color:#6b7280;border:.5px solid var(--cb)}
+
+/* TAGS */
+.tag-ok{font-size:10px;padding:2px 6px;border-radius:4px;background:var(--vd3);color:var(--vd);font-weight:500}
+.tag-pend{font-size:10px;padding:2px 6px;border-radius:4px;background:var(--vm3);color:var(--vm);font-weight:500}
+.tag-disp{font-size:10px;padding:2px 6px;border-radius:4px;background:var(--am3);color:var(--am);font-weight:500}
+
+/* ACTIONS */
+.ai{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:.5px solid var(--cb)}
+.ai:last-child{border-bottom:none}
+.adot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.at{font-size:13px;font-weight:500}
+.am2{font-size:11px;color:var(--tx2);margin-top:2px}
+
+/* FINANCEIRO */
+.fr{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:.5px solid var(--cb);font-size:13px}
+.fr:last-child{border-bottom:none}
+.fv-g{font-weight:700;color:var(--vd)}
+.fv-r{font-weight:700;color:var(--vm)}
+.fv-a{font-weight:700;color:var(--az)}
+.fv{font-weight:600;color:var(--tx)}
+
+/* SEARCH */
+.sw{padding:11px 14px;border-bottom:.5px solid var(--cb)}
+.si{width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--cb);border-radius:var(--rs);background:var(--ci);color:var(--tx);font-family:'DM Sans',sans-serif}
+.si:focus{outline:none;border-color:var(--az);background:#fff}
+
+/* FILTERS */
+.flt{display:flex;gap:6px;padding:9px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:.5px solid var(--cb)}
+.flt::-webkit-scrollbar{display:none}
+.fb{flex-shrink:0;font-size:12px;font-weight:500;padding:5px 12px;border:.5px solid var(--cb);border-radius:20px;background:var(--br);cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--tx2);transition:all .15s}
+.fb.on{background:var(--az);color:#fff;border-color:var(--az)}
+
+/* LIDERES */
+.lgr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px}
+.lbtn{padding:12px;border:.5px solid var(--cb);border-radius:var(--rs);background:var(--ci);cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;transition:all .15s}
+.lbtn.on{background:var(--az2);border-color:var(--az2)}
+.lbtn-av{width:28px;height:28px;border-radius:50%;background:var(--az3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--az);margin-bottom:6px}
+.lbtn.on .lbtn-av{background:rgba(255,255,255,.15);color:#fff}
+.lbtn-nm{font-size:13px;font-weight:600;color:var(--tx)}
+.lbtn.on .lbtn-nm{color:#fff}
+.lbtn-sb{font-size:11px;color:var(--tx3);margin-top:1px}
+.lbtn.on .lbtn-sb{color:rgba(255,255,255,.45)}
+
+/* DETAIL PANEL (cidade/lider) */
+.dpanel{position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.25,.46,.45,.94)}
+.dpanel.open{transform:translateX(0)}
+.dp-hdr{background:var(--az2);padding:16px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.dp-back{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;color:#fff;font-size:18px;flex-shrink:0}
+.dp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#fff;flex:1}
+.dp-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.dp-body{flex:1;overflow-y:auto;background:#eef0f5;padding:14px}
+.dp-body .card{margin-bottom:10px}
+
+/* COUNT */
+.cnt{font-size:11px;color:var(--tx3);padding:8px 14px;text-align:right}
+
+/* LIDER DETAIL inline */
+.ld-detail{display:none;border-top:.5px solid var(--cb)}
+.ld-head{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--az3)}
+.ld-av{width:38px;height:38px;border-radius:50%;background:var(--az);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.ld-nm{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--az2)}
+.ld-sb{font-size:12px;color:var(--az);margin-top:1px}
+.ttl-bar{display:flex;justify-content:space-between;padding:9px 14px;background:var(--ci);border-top:.5px solid var(--cb);border-bottom:.5px solid var(--cb)}
+.ttl-bar span{font-size:11px;color:var(--tx2)}
+.ttl-bar strong{font-size:13px;font-weight:700;color:var(--az)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="av">GR</div>
+    <div>
+      <div class="hdr-nm">Gustavo Reis</div>
+      <div class="hdr-sb">Deputado Estadual 2026 · 86 municípios</div>
+    </div>
+    <div class="badge">● Pré-campanha</div>
+  </div>
+  <nav class="nav">
+    <button class="nb on" onclick="tab(this,'visao')">Visão geral</button>
+    <button class="nb" onclick="tab(this,'cidades')">Cidades</button>
+    <button class="nb" onclick="tab(this,'liderancas')">Lideranças</button>
+  </nav>
+</div>
+
+<!-- VISÃO GERAL -->
+<div class="pg on" id="p-visao">
+  <div class="mg">
+    <div class="mc dk"><div class="ml">Meta total</div><div class="mv">110.950</div><div class="ms">votos previstos</div></div>
+    <div class="mc dk"><div class="ml">Orçamento total</div><div class="mv">R$ 6,1M</div><div class="ms">custo estimado</div></div>
+    <div class="mc"><div class="ml">Municípios</div><div class="mv">86</div><div class="ms">com presença</div></div>
+    <div class="mc"><div class="ml">CPV médio</div><div class="mv">R$ 71</div><div class="ms">custo por voto</div></div>
+  </div>
+
+  <div class="sec">Cidades Prioridade A — clique para detalhes</div>
+  <div class="card" id="list-a"></div>
+
+  <div class="sec">Próximas ações</div>
+  <div class="card">
+    <div class="ai"><div class="adot" style="background:#2563eb"></div><div><div class="at">Caminhada de rua — Jaguariúna</div><div class="am2">31 mai · Nenê &nbsp;<span class="tag-ok">Confirmada</span></div></div></div>
+    <div class="ai"><div class="adot" style="background:#d97706"></div><div><div class="at">Reunião lideranças — Campinas</div><div class="am2">3 jun · Jaime Cruz &nbsp;<span class="tag-ok">Confirmada</span></div></div></div>
+    <div class="ai"><div class="adot" style="background:#16a34a"></div><div><div class="at">Evento comunitário — Pedreira</div><div class="am2">7 jun · Rodrigo Oliveira &nbsp;<span class="tag-ok">Confirmada</span></div></div></div>
+    <div class="ai"><div class="adot" style="background:#d1d5db"></div><div><div class="at">Panfletagem — Santo Antônio de Posse</div><div class="am2">10 jun &nbsp;<span class="tag-pend">Sem responsável</span></div></div></div>
+    <div class="ai"><div class="adot" style="background:#2563eb"></div><div><div class="at">Café com lideranças — Louveira</div><div class="am2">14 jun · Jaime Cruz &nbsp;<span class="tag-ok">Confirmada</span></div></div></div>
+  </div>
+
+  <div class="sec">Resumo financeiro</div>
+  <div class="card">
+    <div class="fr"><span>Orçamento total previsto</span><span class="fv">R$ 6.101.100</span></div>
+    <div class="fr"><span>Maior custo — Baixada Santista</span><span class="fv-r">R$ 1.200.000</span></div>
+    <div class="fr"><span>Cidades sem orçamento definido</span><span class="fv-r">48 cidades</span></div>
+    <div class="fr"><span>CPV médio geral</span><span class="fv-a">R$ 71/voto</span></div>
+    <div class="fr"><span>Cidades disponíveis p/ dobrada</span><span class="fv" style="color:var(--am)">23 cidades</span></div>
+    <div style="padding:12px 14px">
+      <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">Prioridade A · R$ 1.948.000 orçados</div>
+      <div class="pbr"><div class="pbf" style="width:32%;background:var(--az)"></div></div>
+      <div style="font-size:11px;color:var(--tx3);margin-top:3px">32% do orçamento total</div>
+    </div>
+  </div>
+
+  <div class="sec">Distribuição por prioridade</div>
+  <div class="card">
+    <div class="fr"><span><span class="ba ba-a">⭐ A</span> &nbsp;10 cidades</span><span class="fv-a">37.500 votos</span></div>
+    <div class="fr"><span><span class="ba ba-b">🔵 B</span> &nbsp;53 cidades</span><span class="fv-a">68.850 votos</span></div>
+    <div class="fr"><span><span class="ba ba-c">⚪ C</span> &nbsp;23 cidades</span><span style="font-weight:600;color:var(--tx2)">4.600 votos</span></div>
+  </div>
+</div>
+
+<!-- CIDADES -->
+<div class="pg" id="p-cidades">
+  <div class="card" style="margin-top:0">
+    <div class="sw"><input class="si" type="search" placeholder="Buscar cidade ou região..." oninput="filtraC(this.value)"></div>
+    <div class="flt">
+      <button class="fb on" onclick="setPr(this,'')">Todas</button>
+      <button class="fb" onclick="setPr(this,'A')">Prioridade A</button>
+      <button class="fb" onclick="setPr(this,'B')">Prioridade B</button>
+      <button class="fb" onclick="setPr(this,'C')">Prioridade C</button>
+    </div>
+    <div id="c-list"></div>
+    <div class="cnt" id="c-cnt"></div>
+  </div>
+</div>
+
+<!-- LIDERANÇAS -->
+<div class="pg" id="p-liderancas">
+  <div class="card" style="margin-top:0">
+    <div class="card-head"><div class="card-title">Selecione o líder regional</div></div>
+    <div class="lgr" id="l-btns"></div>
+    <div class="ld-detail" id="ld-detail">
+      <div class="ld-head">
+        <div class="ld-av" id="ld-av"></div>
+        <div><div class="ld-nm" id="ld-nm"></div><div class="ld-sb" id="ld-sb"></div></div>
+      </div>
+      <div class="ttl-bar"><span>Meta total</span><strong id="ld-meta"></strong></div>
+      <table class="tbl">
+        <thead><tr><th>Cidade</th><th>P</th><th class="num">Meta</th><th class="num">Orç.</th></tr></thead>
+        <tbody id="ld-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL (cidade) -->
+<div class="dpanel" id="dpanel">
+  <div class="dp-hdr">
+    <button class="dp-back" onclick="closePanel()">&#8592;</button>
+    <div>
+      <div class="dp-title" id="dp-title"></div>
+      <div class="dp-sub" id="dp-sub"></div>
+    </div>
+  </div>
+  <div class="dp-body" id="dp-body"></div>
+</div>
+
+<script>
+const C=[
+  {nm:"JAGUARIÚNA",rg:"RMC",pr:"A",vo:15000,mn:4000,mx:6000,or:190000,cpv:null,lid:["Ver. Cecon (Flavia Helena Zani)","Aluguel","Meninas Digital"],coo:"Nenê",dob:"Paulo Alexandre / Carlos Sampaio / Denis Andia / Vinicius Marchesi / Baleia Rossi / Barjas Negri",ob:""},
+  {nm:"CAMPINAS",rg:"RMC",pr:"A",vo:7000,mn:6000,mx:10000,or:453000,cpv:64.7,lid:["Joao Batista de Toledo Guedes","Eudice Leite da Silva"],coo:"Jaime Cruz",dob:"Carlos Sampaio / Denis Andia / Adriles",ob:""},
+  {nm:"AMPARO",rg:"Circuito das Águas",pr:"A",vo:5000,mn:600,mx:1200,or:300000,cpv:60,lid:["Prof. Alexandre / Dr. Tadeu"],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Saulo / Adriles",ob:""},
+  {nm:"ARTUR NOGUEIRA",rg:"RMC",pr:"A",vo:4000,mn:2500,mx:4000,or:210000,cpv:52.5,lid:["Marquito","Zé da Elétrica","Ver. Beto Baiano"],coo:"Rodrigo Oliveira",dob:"Adriles / Sandra Tadeu",ob:""},
+  {nm:"COSMÓPOLIS",rg:"RMC",pr:"A",vo:3000,mn:1200,mx:2500,or:255000,cpv:85,lid:["Vice Pref. Dr. Maurício","João Capotes"],coo:"Eudice",dob:"Carlos Sampaio / Saulo / Adriles",ob:""},
+  {nm:"PEDREIRA",rg:"Circuito das Águas",pr:"A",vo:2000,mn:2000,mx:3500,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Jonas Donizete / Denis Andia / Adriles",ob:""},
+  {nm:"SANTO ANTÔNIO DE POSSE",rg:"RMC",pr:"A",vo:1000,mn:900,mx:1500,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Zaratini / Denis Andia / Adriles",ob:""},
+  {nm:"HOLAMBRA",rg:"RMC",pr:"A",vo:500,mn:800,mx:1500,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Adriles",ob:""},
+  {nm:"MOGI-GUAÇU",rg:"B Mogiana",pr:"A",vo:500,mn:null,mx:null,or:80000,cpv:160,lid:["Paulo França"],coo:"Rodrigo Oliveira",dob:"Vinicius Marchesi / Adriles",ob:"Dividir com Mota"},
+  {nm:"MOGI-MIRIM",rg:"B Mogiana",pr:"A",vo:500,mn:null,mx:null,or:60000,cpv:120,lid:["Paulo França"],coo:"Rodrigo Oliveira",dob:"Vinicius Marchesi / Mota / Adriles",ob:"Dividir com Mota"},
+  {nm:"Baixada Santista",rg:"B. Santista",pr:"B",vo:19000,mn:null,mx:null,or:1200000,cpv:63.2,lid:["Garrido / Douglas / Jose Ricardo"],coo:"—",dob:"DISPONÍVEL",ob:"Orçamento consolidado Baixada"},
+  {nm:"Santos",rg:"B. Santista",pr:"B",vo:3950,mn:null,mx:null,or:280500,cpv:71,lid:["Douglas","Ze Ricardo","Camila","Luizinho","Raphael","Rafaela","Benhur","Andreia","Batatinha","Bob","Ivy","Lika","Influencer"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"São Vicente",rg:"B. Santista",pr:"B",vo:3600,mn:null,mx:null,or:169500,cpv:47.1,lid:["Anderson","Liderança – Ex-Vereador/Suplente"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"PIRACICABA",rg:"RMP",pr:"B",vo:3000,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"Barjas Negri / Adriles",ob:""},
+  {nm:"Conchal",rg:"Interior",pr:"B",vo:3000,mn:null,mx:null,or:356000,cpv:118.7,lid:["Ex Pref. Valdeci"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Peruíbe",rg:"B. Santista",pr:"B",vo:2750,mn:null,mx:null,or:155000,cpv:56.4,lid:["Liderança 01","Liderança 02 (14p)","Liderança 03 (16p)","Apoiadores ago (15)","Apoiadores set (15)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"SANTA BÁRBARA D'OESTE",rg:"RMC",pr:"B",vo:2000,mn:1500,mx:2500,or:null,cpv:null,lid:[],coo:"Eudice",dob:"Denis Andia",ob:""},
+  {nm:"Guarujá",rg:"B. Santista",pr:"B",vo:1800,mn:null,mx:null,or:147000,cpv:81.7,lid:["Liderança 7.1","Apoiadores 7.1 (7)","Hetel","Simone de Jesus","Tati e Sonia","Luciana e Wagner","Janaina e Wagner","David","Maria Eduarda / Tracy"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"AMERICANA",rg:"RMC",pr:"B",vo:1500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Odair Dias / Rangel",dob:"Denis Andia / Adriles",ob:""},
+  {nm:"BRAGANÇA PAULISTA",rg:"",pr:"B",vo:1500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre / Adriles",ob:""},
+  {nm:"LOUVEIRA",rg:"Circuito das Frutas",pr:"B",vo:1500,mn:null,mx:null,or:230000,cpv:153.3,lid:["Ver. Mineiro","Fabio Brito"],coo:"Jaime Cruz",dob:"Carlos Sampaio / Saulo / Luis Fernando / Denis Andia / Adriles",ob:""},
+  {nm:"NOVA ODESSA",rg:"RMC",pr:"B",vo:1500,mn:1000,mx:2000,or:130000,cpv:86.7,lid:["Sec. Antonio"],coo:"Odair Dias",dob:"Denis Andia / Adriles / Jonas Donizete",ob:"Dividir Jonas (50% custo/100% votos GR)"},
+  {nm:"ARARAS",rg:"RMP",pr:"B",vo:1000,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"Paulo Alexandre / Renato Bolsonaro / Adriles",ob:""},
+  {nm:"HORTOLÂNDIA",rg:"RMC",pr:"B",vo:1000,mn:1500,mx:3000,or:null,cpv:null,lid:[],coo:"Odair Dias",dob:"Denis Andia / Adriles",ob:""},
+  {nm:"ITAPIRA",rg:"B Mogiana",pr:"B",vo:1000,mn:600,mx:1200,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre",ob:""},
+  {nm:"JUNDIAÍ",rg:"",pr:"B",vo:1000,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre / Luis Fernando / Adriles",ob:""},
+  {nm:"LIMEIRA",rg:"RMP",pr:"B",vo:1000,mn:null,mx:null,or:60000,cpv:60,lid:["Ex Ver. Jorge"],coo:"Rangel",dob:"Denis Andia / Adriles",ob:""},
+  {nm:"RIO CLARO",rg:"",pr:"B",vo:1000,mn:null,mx:null,or:120000,cpv:120,lid:["Luciano"],coo:"Eudice",dob:"Adriles / Sandra Tadeu",ob:""},
+  {nm:"VINHEDO",rg:"RMC",pr:"B",vo:1000,mn:1800,mx:3500,or:48000,cpv:48,lid:["Balu","Jaime Cruz"],coo:"Jaime Cruz",dob:"Carlos Sampaio / Denis Andia / Adriles",ob:"Equipe + veículo à parte"},
+  {nm:"Ibaté",rg:"Interior",pr:"B",vo:1000,mn:null,mx:null,or:140000,cpv:140,lid:["(Damião) Juan Robert da Silva Souza"],coo:"—",dob:"DISPONÍVEL",ob:"Custeio reunião 13/05"},
+  {nm:"Praia Grande",rg:"B. Santista",pr:"B",vo:900,mn:null,mx:null,or:49600,cpv:55.1,lid:["Soro","Junior","Apoiadores manhã (4)","Apoiadores tarde (4)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"PAULÍNIA",rg:"RMC",pr:"B",vo:800,mn:2000,mx:3500,or:null,cpv:null,lid:[],coo:"Rangel",dob:"Paulo Freire / Adriles",ob:""},
+  {nm:"ITATIBA",rg:"RMC",pr:"B",vo:750,mn:null,mx:null,or:75000,cpv:100,lid:["Aires Ribeiro"],coo:"Odair Dias",dob:"Paulo Alexandre",ob:""},
+  {nm:"ÁGUAS DE LINDÓIA",rg:"Circuito das Águas",pr:"B",vo:700,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre",ob:""},
+  {nm:"SUMARÉ",rg:"RMC",pr:"B",vo:700,mn:1800,mx:3500,or:18000,cpv:25.7,lid:["Claudirene Gomes","Tatiane Ribeiro","Rogerio R. Fernandes","Wilian Pereira","Edilson de Souza","Adevanil Alves","Elisangela P. da Silva","Jair A. Medeiro"],coo:"Rangel",dob:"Denis Andia / Adriles",ob:""},
+  {nm:"Mongaguá",rg:"B. Santista",pr:"B",vo:700,mn:null,mx:null,or:37000,cpv:52.9,lid:["Liderança 1","Lideranças (5p)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Itanhaém",rg:"B. Santista",pr:"B",vo:700,mn:null,mx:null,or:57000,cpv:81.4,lid:["Marcio","Apoiadores (9p)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Osasco",rg:"Outras",pr:"B",vo:700,mn:null,mx:null,or:99000,cpv:141.4,lid:["Chintia","Pastor Rosman","Apoiadores (15p)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Cerquilho / Lençóis / Tietê",rg:"Outras",pr:"B",vo:650,mn:null,mx:null,or:62000,cpv:95.4,lid:["Alex","Apoiadores (10p)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"VALINHOS",rg:"RMC",pr:"B",vo:600,mn:2500,mx:4000,or:null,cpv:null,lid:[],coo:"Jaime Cruz",dob:"Carlos Sampaio / Denis Andia / Adriles",ob:""},
+  {nm:"BOM JESUS DOS PERDÕES",rg:"Bragantina",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"FRANCISCO MORATO",rg:"RMSP",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"DISPONÍVEL",ob:""},
+  {nm:"IRACEMÁPOLIS",rg:"BM",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"João Cury",ob:""},
+  {nm:"LINDÓIA",rg:"Circuito das Águas",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre",ob:""},
+  {nm:"MONTE ALEGRE DO SUL",rg:"Circuito das Águas",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Saulo",ob:""},
+  {nm:"MONTE MOR",rg:"RMC",pr:"B",vo:500,mn:800,mx:1800,or:null,cpv:null,lid:[],coo:"Jaime Cruz",dob:"Denis Andia",ob:""},
+  {nm:"MORUNGABA",rg:"RMC",pr:"B",vo:500,mn:600,mx:1200,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre",ob:""},
+  {nm:"PINHALZINHO",rg:"Bragantina",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Saulo",ob:""},
+  {nm:"SERRA NEGRA",rg:"Circuito das Águas",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Adriles",ob:""},
+  {nm:"SOCORRO",rg:"Circuito das Águas",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Adriles",ob:""},
+  {nm:"TUIUTI",rg:"Bragantina",pr:"B",vo:500,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rodrigo Oliveira",dob:"Paulo Alexandre / Saulo",ob:""},
+  {nm:"Bauru",rg:"Interior",pr:"B",vo:500,mn:null,mx:null,or:50000,cpv:100,lid:["Ze Love"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Cubatão",rg:"B. Santista",pr:"B",vo:400,mn:null,mx:null,or:17000,cpv:42.5,lid:["Jose Antonio","Ricardo Oliveira"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Bertioga",rg:"B. Santista",pr:"B",vo:100,mn:null,mx:null,or:5000,cpv:50,lid:["Vanuza"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"SÃO PAULO",rg:"",pr:"C",vo:2600,mn:null,mx:null,or:393500,cpv:151.3,lid:["Elizeu Paixão","Almir Jose dos Santos","Jose Ricardo da Silva"],coo:"—",dob:"Adriles / Sandra Tadeu",ob:"Orçamento grupo SP"},
+  {nm:"CAPIVARI",rg:"RMP",pr:"C",vo:500,mn:null,mx:null,or:60000,cpv:120,lid:["Tiago / Vaguinho"],coo:"Rangel",dob:"DISPONÍVEL",ob:""},
+  {nm:"ENGENHEIRO COELHO",rg:"",pr:"C",vo:500,mn:1000,mx:1800,or:40000,cpv:80,lid:["Ver. Dedel"],coo:"Eudice",dob:"Sandra Tadeu",ob:""},
+  {nm:"Iguape",rg:"Lit. Norte/Vale",pr:"C",vo:500,mn:null,mx:null,or:17000,cpv:34,lid:["Elias","Antonio Prata"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Caraguatatuba",rg:"Lit. Norte/Vale",pr:"C",vo:500,mn:null,mx:null,or:32000,cpv:64,lid:["Wilson Rangel","Apoiadores (4p)"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Vale do Ribeira",rg:"Lit. Norte/Vale",pr:"C",vo:450,mn:null,mx:null,or:27000,cpv:60,lid:["Ademir","Claudio Mello","Sindicato"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"CAIEIRAS",rg:"RMSP",pr:"C",vo:400,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"DISPONÍVEL",ob:""},
+  {nm:"PIRACAIA",rg:"Bragantina",pr:"C",vo:400,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre / Adriles",ob:""},
+  {nm:"RIO DAS PEDRAS",rg:"RMP",pr:"C",vo:400,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"Sandra Tadeu",ob:""},
+  {nm:"VÁRZEA PAULISTA",rg:"RMJ",pr:"C",vo:400,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"CORDEIRÓPOLIS",rg:"RMP",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"Paulo Alexandre",ob:""},
+  {nm:"ELIAS FAUSTO",rg:"RMP",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"DISPONÍVEL",ob:""},
+  {nm:"ITUPEVA",rg:"Circuito das Frutas",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Jaime Cruz",dob:"Paulo Alexandre / Denis Andia",ob:""},
+  {nm:"JARINÚ",rg:"RMJ",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre / Saulo",ob:""},
+  {nm:"SÃO PEDRO",rg:"RMP",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"DISPONÍVEL",ob:""},
+  {nm:"VARGEM",rg:"Bragantina",pr:"C",vo:300,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"IGARATÁ",rg:"Vale",pr:"C",vo:200,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"Paulo Alexandre",ob:""},
+  {nm:"JOANÓPOLIS",rg:"Bragantina",pr:"C",vo:200,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"PEDRA BELA",rg:"Bragantina",pr:"C",vo:200,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"RAFARD",rg:"RMP",pr:"C",vo:200,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"DISPONÍVEL",ob:""},
+  {nm:"Ilha Comprida",rg:"Lit. Norte/Vale",pr:"C",vo:200,mn:null,mx:null,or:5000,cpv:25,lid:["Jair"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Miracatu",rg:"Lit. Norte/Vale",pr:"C",vo:200,mn:null,mx:null,or:10000,cpv:50,lid:["Luis Otavio"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"Itariri",rg:"Lit. Norte/Vale",pr:"C",vo:200,mn:null,mx:null,or:10000,cpv:50,lid:["Jair","Ferreira"],coo:"—",dob:"DISPONÍVEL",ob:""},
+  {nm:"ESTIVA GERBI",rg:"",pr:"C",vo:150,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Eudice",dob:"Vinicius Marchesi",ob:""},
+  {nm:"NAZARÉ PAULISTA",rg:"Bragantina",pr:"C",vo:150,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"—",dob:"Paulo Alexandre",ob:""},
+  {nm:"SALTINHO",rg:"RMP",pr:"C",vo:150,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel / Silvino Cintra",dob:"Paulo Alexandre",ob:""},
+  {nm:"ÁGUAS DE SÃO PEDRO",rg:"RMP",pr:"C",vo:100,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel",dob:"DISPONÍVEL",ob:""},
+  {nm:"MOMBUCA",rg:"RMP",pr:"C",vo:100,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Rangel / Silvino Cintra",dob:"Paulo Alexandre",ob:""},
+  {nm:"SANTA MARIA DA SERRA",rg:"RMP",pr:"C",vo:100,mn:null,mx:null,or:null,cpv:null,lid:[],coo:"Silvino Cintra",dob:"Paulo Alexandre",ob:""},
+  {nm:"Juquiá",rg:"Lit. Norte/Vale",pr:"C",vo:100,mn:null,mx:null,or:5000,cpv:50,lid:["Isaura"],coo:"—",dob:"DISPONÍVEL",ob:""},
+];
+
+const LIDERES={
+  "Rodrigo Oliveira":["AMPARO","ARTUR NOGUEIRA","PEDREIRA","SANTO ANTÔNIO DE POSSE","HOLAMBRA","MOGI-GUAÇU","MOGI-MIRIM","ÁGUAS DE LINDÓIA","LINDÓIA","MONTE ALEGRE DO SUL","MORUNGABA","PINHALZINHO","SERRA NEGRA","SOCORRO","TUIUTI","ITAPIRA"],
+  "Jaime Cruz":["CAMPINAS","LOUVEIRA","VINHEDO","VALINHOS","MONTE MOR","ITUPEVA"],
+  "Nenê":["JAGUARIÚNA"],
+  "Eudice":["COSMÓPOLIS","SANTA BÁRBARA D'OESTE","AMERICANA","HORTOLÂNDIA","RIO CLARO","ENGENHEIRO COELHO","ESTIVA GERBI"],
+  "Odair Dias / Rangel":["AMERICANA","NOVA ODESSA","PAULÍNIA","ITATIBA","SUMARÉ"],
+  "Rangel":["PIRACICABA","LIMEIRA","IRACEMÁPOLIS","CAPIVARI","RIO DAS PEDRAS","SÃO PEDRO","ELIAS FAUSTO","RAFARD","SALTINHO","ÁGUAS DE SÃO PEDRO","MOMBUCA"],
+  "Silvino Cintra":["ARARAS","FRANCISCO MORATO","CAIEIRAS","IGARATÁ","CORDEIRÓPOLIS","SANTA MARIA DA SERRA","SALTINHO"],
+};
+
+let prFilt="", busFilt="";
+
+function fmt(n){return n!=null&&n>0?n.toLocaleString('pt-BR'):'—'}
+function fmtR(n){return n!=null&&n>0?'R$ '+n.toLocaleString('pt-BR'):'—'}
+function initials(n){const p=n.split(/[\s\/]/);return(p[0][0]+(p[1]?p[1][0]:'')).toUpperCase()}
+function baCls(p){return p==='A'?'ba-a':p==='B'?'ba-b':'ba-c'}
+function baIcon(p){return p==='A'?'⭐':p==='B'?'🔵':'⚪'}
+
+function renderListA(){
+  const a=C.filter(c=>c.pr==='A');
+  const mx=Math.max(...a.map(c=>c.vo));
+  document.getElementById('list-a').innerHTML=a.map(c=>`
+    <div class="city-row" onclick="openCity('${c.nm.replace(/'/g,"\\'")}')">
+      <div style="flex:1;min-width:0">
+        <div class="city-nm">${c.nm}</div>
+        <div class="city-rg">${c.rg||'—'} · ${c.lid.length} liderança${c.lid.length!==1?'s':''}</div>
+        <div class="pbr"><div class="pbf" style="width:${Math.round(c.vo/mx*100)}%;background:var(--az)"></div></div>
+      </div>
+      <div style="margin-left:12px;text-align:right;flex-shrink:0">
+        <div class="city-meta">${fmt(c.vo)}</div>
+        <div class="city-sub">${c.or?fmtR(c.or):'Orç. a definir'}</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>`).join('');
+}
+
+function renderCidades(){
+  let data=C.filter(c=>{
+    const okP=!prFilt||c.pr===prFilt;
+    const okB=!busFilt||c.nm.toLowerCase().includes(busFilt)||c.rg.toLowerCase().includes(busFilt);
+    return okP&&okB;
+  });
+  document.getElementById('c-list').innerHTML=data.map(c=>`
+    <div class="city-row" onclick="openCity('${c.nm.replace(/'/g,"\\'")}')">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="ba ${baCls(c.pr)}">${baIcon(c.pr)} ${c.pr}</span>
+          <span class="city-nm">${c.nm}</span>
+        </div>
+        <div class="city-rg" style="margin-top:2px">${c.rg||'—'} · coord: ${c.coo}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:10px">
+        <div class="city-meta">${fmt(c.vo)}</div>
+        <div class="city-sub">${c.or?fmtR(c.or):'S/ orç.'}</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>`).join('');
+  document.getElementById('c-cnt').textContent=`${data.length} cidades`;
+}
+
+function openCity(nm){
+  const c=C.find(x=>x.nm===nm);
+  if(!c) return;
+  document.getElementById('dp-title').textContent=c.nm;
+  document.getElementById('dp-sub').textContent=`${c.rg||'—'} · Prioridade ${c.pr}`;
+
+  const disp=c.dob==='DISPONÍVEL';
+  document.getElementById('dp-body').innerHTML=`
+    <div class="card">
+      <div class="card-head"><div class="card-title">📊 Dados eleitorais</div></div>
+      <div class="fr"><span>Meta de votos</span><span class="fv-a">${fmt(c.vo)}</span></div>
+      ${c.mn?`<div class="fr"><span>Meta mínima</span><span class="fv">${fmt(c.mn)}</span></div>`:''}
+      ${c.mx?`<div class="fr"><span>Meta alvo</span><span class="fv">${fmt(c.mx)}</span></div>`:''}
+      <div class="fr"><span>Prioridade</span><span><span class="ba ${baCls(c.pr)}">${baIcon(c.pr)} ${c.pr}</span></span></div>
+      <div class="fr"><span>Região</span><span class="fv">${c.rg||'—'}</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-title">💰 Financeiro</div></div>
+      <div class="fr"><span>Orçamento</span><span class="${c.or?'fv-a':'fv-r'}">${c.or?fmtR(c.or):'A definir'}</span></div>
+      <div class="fr"><span>CPV (custo/voto)</span><span class="fv">${c.cpv?'R$ '+c.cpv.toFixed(1)+'/voto':'—'}</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-title">🤝 Coordenação política</div></div>
+      <div class="fr"><span>Coordenação</span><span class="fv">${c.coo}</span></div>
+      <div style="padding:11px 14px;border-bottom:.5px solid var(--cb)">
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:4px">Dobrada Dep. Federal</div>
+        <div style="font-size:13px;font-weight:500;color:${disp?'var(--am)':'var(--tx)'}">
+          ${disp?'<span class="tag-disp">Disponível</span>':c.dob}
+        </div>
+      </div>
+      ${c.ob?`<div class="fr"><span>Observação</span><span style="font-size:12px;color:var(--tx2);text-align:right;max-width:60%">${c.ob}</span></div>`:''}
+    </div>
+
+    ${c.lid.length>0?`
+    <div class="card">
+      <div class="card-head"><div class="card-title">👥 Lideranças locais</div></div>
+      ${c.lid.map(l=>`
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:.5px solid var(--cb)">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--az3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--az);flex-shrink:0">${l.substring(0,2).toUpperCase()}</div>
+          <div style="font-size:13px;font-weight:500">${l}</div>
+        </div>`).join('')}
+    </div>`:`
+    <div class="card">
+      <div class="card-head"><div class="card-title">👥 Lideranças locais</div></div>
+      <div style="padding:16px 14px;text-align:center;color:var(--tx3);font-size:13px">Nenhuma liderança cadastrada</div>
+    </div>`}
+  `;
+
+  const panel=document.getElementById('dpanel');
+  panel.style.background='#eef0f5';
+  panel.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closePanel(){
+  document.getElementById('dpanel').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderLidBtns(){
+  document.getElementById('l-btns').innerHTML=Object.keys(LIDERES).map(nm=>`
+    <button class="lbtn" onclick="selLider(this,'${nm}')">
+      <div class="lbtn-av">${initials(nm)}</div>
+      <div class="lbtn-nm">${nm}</div>
+      <div class="lbtn-sb">${LIDERES[nm].length} cidade${LIDERES[nm].length!==1?'s':''}</div>
+    </button>`).join('');
+}
+
+function selLider(btn, nm){
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const cids=LIDERES[nm].map(n=>C.find(c=>c.nm===n)).filter(Boolean);
+  const tot=cids.reduce((s,c)=>s+c.vo,0);
+  document.getElementById('ld-av').textContent=initials(nm);
+  document.getElementById('ld-nm').textContent=nm;
+  document.getElementById('ld-sb').textContent=`${cids.length} cidade${cids.length!==1?'s':''} na base`;
+  document.getElementById('ld-meta').textContent=tot.toLocaleString('pt-BR')+' votos';
+  document.getElementById('ld-body').innerHTML=cids.length>0?cids.map(c=>`
+    <tr class="clickable" onclick="openCity('${c.nm.replace(/'/g,"\\'")}')">
+      <td style="font-weight:500">${c.nm}</td>
+      <td><span class="ba ${baCls(c.pr)}">${c.pr}</span></td>
+      <td class="num" style="font-weight:700;color:var(--az)">${fmt(c.vo)}</td>
+      <td class="num" style="color:var(--tx2)">${c.or?fmtR(c.or):'—'}</td>
+    </tr>`).join(''):'<tr><td colspan="4" style="padding:14px;text-align:center;color:var(--tx3)">Sem dados</td></tr>';
+  document.getElementById('ld-detail').style.display='block';
+  setTimeout(()=>document.getElementById('ld-detail').scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+
+function tab(btn, id){
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setPr(btn, p){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  prFilt=p; renderCidades();
+}
+
+function filtraC(v){busFilt=v.toLowerCase();renderCidades();}
+
+// swipe to close
+let tx0=0;
+document.getElementById('dpanel').addEventListener('touchstart',e=>{tx0=e.touches[0].clientX},{passive:true});
+document.getElementById('dpanel').addEventListener('touchend',e=>{if(e.changedTouches[0].clientX-tx0>60)closePanel();},{passive:true});
+
+renderListA();
+renderCidades();
+renderLidBtns();
+</script>
+</body>
+</html>
