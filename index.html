@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>Campanha Gustavo Reis · Deputado Estadual 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--az:#1565c0;--az2:#0a3270;--az3:#e3edf9;--vd:#2e7d32;--vd3:#e8f5e9;--vm:#b83232;--vm3:#fceaea;--am:#d97706;--am3:#fef3e2;--ci:#f5f6f8;--cb:#e0e4ea;--tx:#111827;--tx2:#6b7280;--tx3:#9ca3af;--br:#fff;--r:12px;--rs:8px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',sans-serif;color:var(--tx);background:#eef1f7;min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--az2);padding:18px 16px 0;position:sticky;top:0;z-index:200}
+.hdr-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.av{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.25);flex-shrink:0}
+.av img{width:100%;height:100%;object-fit:cover}
+.hdr-nm{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:#fff;line-height:1.1}
+.hdr-sb{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.badge{font-size:10px;padding:3px 8px;border-radius:20px;background:rgba(26,122,74,.3);color:#6ee7a8;border:.5px solid rgba(110,231,168,.25);font-weight:500;white-space:nowrap;margin-left:auto}
+.nav{display:flex;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nb{flex-shrink:0;padding:10px 16px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;color:rgba(255,255,255,.45);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nb.on{color:#fff;border-bottom-color:#fff}
+
+/* PAGES */
+.pg{display:none;padding:14px}
+.pg.on{display:block}
+
+/* METRICS */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.mc{background:var(--br);border-radius:var(--r);padding:14px;border:.5px solid var(--cb)}
+.mc.dk{background:var(--az2);border-color:var(--az2)}
+.ml{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2);margin-bottom:4px}
+.mc.dk .ml{color:rgba(255,255,255,.45)}
+.mv{font-size:21px;font-weight:700;font-family:'Syne',sans-serif;color:var(--tx);line-height:1}
+.mc.dk .mv{color:#fff}
+.ms{font-size:11px;color:var(--tx3);margin-top:2px}
+.mc.dk .ms{color:rgba(255,255,255,.35)}
+
+/* SECTION */
+.sec{font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx2);margin:16px 0 9px}
+
+/* CARD */
+.card{background:var(--br);border-radius:var(--r);border:.5px solid var(--cb);margin-bottom:10px;overflow:hidden}
+.card-head{padding:13px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid var(--cb)}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--tx)}
+
+/* CITY ROW */
+.city-row{display:flex;align-items:center;padding:11px 14px;border-bottom:.5px solid var(--cb);cursor:pointer;transition:background .15s;gap:10px}
+.city-row:last-child{border-bottom:none}
+.city-row:hover,.city-row:active{background:#f0f4ff}
+.city-nm{font-size:13px;font-weight:600;color:var(--tx)}
+.city-rg{font-size:10px;color:var(--tx3);margin-top:1px}
+.city-meta{font-size:13px;font-weight:700;color:var(--az);text-align:right;white-space:nowrap}
+.city-sub{font-size:10px;color:var(--tx3);text-align:right;margin-top:1px}
+.pbr{height:4px;background:var(--cb);border-radius:2px;overflow:hidden;margin-top:5px}
+.pbf{height:100%;border-radius:2px;background:var(--az)}
+.arrow{font-size:13px;color:var(--tx3);flex-shrink:0}
+
+/* BADGES */
+.ba{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px}
+.ba-a{background:#fff8e1;color:#e65100;border:.5px solid #ffcc02}
+.ba-b{background:#e3f2fd;color:#1565c0;border:.5px solid #90caf9}
+.ba-c{background:#f5f5f5;color:#616161;border:.5px solid #e0e0e0}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--tx3);text-align:left;padding:8px 10px;background:var(--ci);border-bottom:.5px solid var(--cb)}
+.tbl td{padding:9px 10px;border-bottom:.5px solid var(--cb);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr.cl{cursor:pointer}
+.tbl tr.cl:hover td{background:#f0f4ff}
+.num{text-align:right}
+
+/* SEARCH & FILTER */
+.sw{padding:11px 14px;border-bottom:.5px solid var(--cb)}
+.si{width:100%;font-size:14px;padding:9px 12px;border:.5px solid var(--cb);border-radius:var(--rs);background:var(--ci);color:var(--tx);font-family:'DM Sans',sans-serif}
+.si:focus{outline:none;border-color:var(--az)}
+.flt{display:flex;gap:6px;padding:9px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:.5px solid var(--cb)}
+.flt::-webkit-scrollbar{display:none}
+.fb{flex-shrink:0;font-size:12px;font-weight:500;padding:5px 12px;border:.5px solid var(--cb);border-radius:20px;background:var(--br);cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--tx2)}
+.fb.on{background:var(--az);color:#fff;border-color:var(--az)}
+.cnt{font-size:11px;color:var(--tx3);padding:8px 14px;text-align:right}
+
+/* LIDERES */
+.lgr{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px}
+.lbtn{padding:11px;border:.5px solid var(--cb);border-radius:var(--rs);background:var(--ci);cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left}
+.lbtn.on{background:var(--az2);border-color:var(--az2)}
+.lbtn-av{width:26px;height:26px;border-radius:50%;background:var(--az3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--az);margin-bottom:5px}
+.lbtn.on .lbtn-av{background:rgba(255,255,255,.15);color:#fff}
+.lbtn-nm{font-size:12px;font-weight:600;color:var(--tx)}
+.lbtn.on .lbtn-nm{color:#fff}
+.lbtn-sb{font-size:10px;color:var(--tx3);margin-top:1px}
+.lbtn.on .lbtn-sb{color:rgba(255,255,255,.4)}
+.ld-detail{display:none;border-top:.5px solid var(--cb)}
+.ld-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--az3)}
+.ld-av{width:36px;height:36px;border-radius:50%;background:var(--az);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.ld-nm{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--az2)}
+.ld-sb{font-size:11px;color:var(--az)}
+.ttl{display:flex;justify-content:space-between;padding:8px 14px;background:var(--ci);border-top:.5px solid var(--cb);border-bottom:.5px solid var(--cb)}
+.ttl span{font-size:11px;color:var(--tx2)}
+.ttl strong{font-size:13px;font-weight:700;color:var(--az)}
+
+/* DETAIL PANEL */
+.dpanel{position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.25,.46,.45,.94);background:#eef1f7}
+.dpanel.open{transform:translateX(0)}
+.dp-hdr{flex-shrink:0;background:var(--az2);padding:0}
+.dp-back{position:absolute;top:14px;left:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:10}
+.dp-body{flex:1;overflow-y:auto}
+
+/* CITY DETAIL CARD — estilo planilha */
+.city-hero{background:var(--az2);padding:14px 14px 0;position:relative}
+.city-hero-inner{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.city-foto{width:64px;height:72px;border-radius:8px;overflow:hidden;border:2px solid rgba(255,255,255,.25);flex-shrink:0}
+.city-foto img{width:100%;height:100%;object-fit:cover;object-position:top}
+.city-hero-info{flex:1}
+.city-hero-nome{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:#fff;line-height:1}
+.city-hero-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+.city-votos-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:.5px solid rgba(255,255,255,.15)}
+.cv-box{padding:12px 14px;text-align:center}
+.cv-box:first-child{border-right:.5px solid rgba(255,255,255,.15)}
+.cv-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.55);margin-bottom:4px}
+.cv-val{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1}
+.cv-val.pess{color:#ef9a9a}
+
+/* INFO STRIPS */
+.info-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--br);border-bottom:.5px solid var(--cb)}
+.is-box{padding:10px 8px;text-align:center;border-right:.5px solid var(--cb)}
+.is-box:last-child{border-right:none}
+.is-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--tx3);margin-bottom:3px}
+.is-val{font-size:13px;font-weight:700;color:var(--tx)}
+
+/* SECTION PANELS */
+.dp-sec{padding:14px}
+.dp-card{background:var(--br);border-radius:var(--r);border:.5px solid var(--cb);margin-bottom:10px;overflow:hidden}
+.dp-card-head{padding:10px 14px;background:var(--az2);display:flex;align-items:center;gap:8px}
+.dp-card-head span{font-size:12px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.04em}
+.dp-card-head.vd{background:var(--vd)}
+.dp-card-head.am{background:var(--am)}
+.dp-card-head.gr{background:#4a4a4a}
+
+/* TABELA DOBRADAS */
+.dob-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.dob-tbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:#fff;text-align:center;padding:7px 8px;background:rgba(255,255,255,.15);border-right:.5px solid rgba(255,255,255,.15)}
+.dob-tbl th:last-child{border-right:none}
+.dob-tbl td{padding:9px 8px;border-bottom:.5px solid var(--cb);text-align:center;vertical-align:middle}
+.dob-tbl tr:last-child td{border-bottom:none}
+.dob-tbl tr:hover td{background:var(--ci)}
+
+/* FR */
+.fr{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:.5px solid var(--cb);font-size:13px}
+.fr:last-child{border-bottom:none}
+.fv-g{font-weight:700;color:var(--vd)}
+.fv-r{font-weight:700;color:var(--vm)}
+.fv-a{font-weight:700;color:var(--az)}
+.fv{font-weight:600}
+
+/* PLACEHOLDER AÇÕES */
+.acoes-ph{padding:24px 14px;text-align:center}
+.acoes-ph-icon{font-size:32px;margin-bottom:8px}
+.acoes-ph-txt{font-size:13px;color:var(--tx2);font-weight:500}
+.acoes-ph-sub{font-size:11px;color:var(--tx3);margin-top:4px}
+.acoes-ph-btn{margin-top:14px;display:inline-block;font-size:12px;padding:8px 16px;border-radius:20px;background:var(--az3);color:var(--az);font-weight:600;border:.5px solid #90caf9}
+
+/* TAG */
+.tag-ok{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--vd3);color:var(--vd);font-weight:600}
+.tag-disp{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--am3);color:var(--am);font-weight:600}
+.tag-nd{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--ci);color:var(--tx2);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="av"><img src="data:image/jpeg;base64,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" alt="Gustavo Reis"></div>
+    <div>
+      <div class="hdr-nm">Gustavo Reis</div>
+      <div class="hdr-sb">Deputado Estadual 2026 · 59 municípios</div>
+    </div>
+    <div class="badge">● Pré-campanha</div>
+  </div>
+  <nav class="nav">
+    <button class="nb on" onclick="tab(this,'visao')">Visão geral</button>
+    <button class="nb" onclick="tab(this,'cidades')">Cidades</button>
+    <button class="nb" onclick="tab(this,'liderancas')">Lideranças</button>
+  </nav>
+</div>
+
+<!-- VISÃO GERAL -->
+<div class="pg on" id="p-visao">
+  <div class="mg">
+    <div class="mc dk"><div class="ml">Meta total</div><div class="mv">75.800</div><div class="ms">votos previstos</div></div>
+    <div class="mc dk"><div class="ml">Orçamento</div><div class="mv">R$ 2.269.000</div><div class="ms">total estruturado</div></div>
+    <div class="mc"><div class="ml">Municípios</div><div class="mv">59</div><div class="ms">com presença</div></div>
+    <div class="mc"><div class="ml">Eleitores</div><div class="mv">4.364.711</div><div class="ms">universo total</div></div>
+  </div>
+
+  <div class="sec">Prioridade A — toque para ver detalhes</div>
+  <div class="card" id="list-a"></div>
+
+  <div class="sec">Distribuição por prioridade</div>
+  <div class="card">
+    <div class="fr"><span><span class="ba ba-a">⭐ A</span>&nbsp; 12 cidades</span><span class="fv-a">48.000 votos</span></div>
+    <div class="fr"><span><span class="ba ba-b">🔵 B</span>&nbsp; 18 cidades</span><span class="fv-a">20.500 votos</span></div>
+    <div class="fr"><span><span class="ba ba-c">⚪ C</span>&nbsp; 29 cidades</span><span style="font-weight:600;color:var(--tx2)">7.300 votos</span></div>
+  </div>
+</div>
+
+<!-- CIDADES -->
+<div class="pg" id="p-cidades">
+  <div class="card" style="margin-top:0">
+    <div class="sw"><input class="si" type="search" placeholder="Buscar cidade ou região..." oninput="filtraC(this.value)"></div>
+    <div class="flt">
+      <button class="fb on" onclick="setPr(this,'')">Todas</button>
+      <button class="fb" onclick="setPr(this,'A')">Prioridade A</button>
+      <button class="fb" onclick="setPr(this,'B')">Prioridade B</button>
+      <button class="fb" onclick="setPr(this,'C')">Prioridade C</button>
+    </div>
+    <div id="c-list"></div>
+    <div class="cnt" id="c-cnt"></div>
+  </div>
+</div>
+
+<!-- LIDERANÇAS -->
+<div class="pg" id="p-liderancas">
+  <div class="card" style="margin-top:0">
+    <div class="card-head"><div class="card-title">Coordenadores regionais</div></div>
+    <div class="lgr" id="l-btns"></div>
+    <div class="ld-detail" id="ld-detail">
+      <div class="ld-head">
+        <div class="ld-av" id="ld-av"></div>
+        <div><div class="ld-nm" id="ld-nm"></div><div class="ld-sb" id="ld-sb"></div></div>
+      </div>
+      <div class="ttl"><span>Meta total</span><strong id="ld-meta"></strong></div>
+      <table class="tbl">
+        <thead><tr><th>Cidade</th><th>P</th><th class="num">Meta</th><th class="num">Orç.</th></tr></thead>
+        <tbody id="ld-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL CIDADE -->
+<div class="dpanel" id="dpanel">
+  <button class="dp-back" onclick="closePanel()">&#8592;</button>
+  <div class="dp-body" id="dp-body"></div>
+</div>
+
+<script>
+const C = [{"nm": "JAGUARIÚNA", "rg": "RMC", "pr": "⭐ A", "pref": "DAVI", "part": "PP", "eleit": 44525, "vv": 30579, "gr": "4977", "aniv": "12/07", "status": "✅ OK", "vo": 15000, "pess": 10500, "or": 190000, "cpv": 0, "nlid": 4, "coord": "ROMILSON/NENE", "dob": "Carlos Sampaio / Paulo Alexandre / Denis Andida / Vinicius Marchesi / Baleia Rossi / Barjas Negri / luis Fernando / Jonas Donizete", "lid_pol": "Vice Pref. Valdir Parisi - Ver. Graça / Ver. Cristiano Cecon", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "CAMPINAS", "rg": "RMC", "pr": "⭐ A", "pref": "DÁRIO SAADI", "part": "REPUBLICANOS", "eleit": 884726, "vv": 532867, "gr": "685", "aniv": "14/07", "status": "✅ OK", "vo": 10000, "pess": 7000, "or": 453000, "cpv": 64.7, "nlid": 2, "coord": "LUIZ LAURO", "dob": "Carlos Sampaio / Denis Andida / Luis Lauro", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ARTUR NOGUEIRA", "rg": "RMC", "pr": "⭐ A", "pref": "LUCAS SAI", "part": "PL", "eleit": 38349, "vv": 29907, "gr": "500", "aniv": "", "status": "🔘 Sem dados", "vo": 3000, "pess": 2100, "or": 210000, "cpv": 52.5, "nlid": 2, "coord": "CAPATO", "dob": "", "lid_pol": "", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "JUNDIAÍ", "rg": "", "pr": "⭐ A", "pref": "GUSTAVO MARTINELLI", "part": "UNIÃO", "eleit": 336406, "vv": 216722, "gr": "19", "aniv": "14/12", "status": "⚠️ Atenção", "vo": 3000, "pess": 2100, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAMES", "dob": "Paulo Alexandre / Luis Fernando", "lid_pol": "Sup. Fabio da Guarda", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SANTA BÁRBARA D’OESTE", "rg": "", "pr": "⭐ A", "pref": "RAFAEL PIOVEZAN", "part": "PL", "eleit": 137930, "vv": 98312, "gr": "-", "aniv": "04/12", "status": "⚠️ Atenção", "vo": 3000, "pess": 2100, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "LOUVEIRA", "rg": "Circuito das Frutas", "pr": "⭐ A", "pref": "PAULO FINAMORE", "part": "MDB", "eleit": 39571, "vv": 30074, "gr": "-", "aniv": "21/03", "status": "✅ OK", "vo": 2000, "pess": 1400, "or": 230000, "cpv": 153.3, "nlid": 2, "coord": "JAMES/SENA", "dob": "Carlos Sampaio / Saulo Pedroso / Luis Fernando / Denis Andida / Padre Silvio Andrey", "lid_pol": "Ver. Clayton Finamore / Sup. Jota / Ver. Juares Mineiro", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MOGI-MIRIM", "rg": "B Mogiana", "pr": "⭐ A", "pref": "DR PAULO SILVA", "part": "PDT", "eleit": 67283, "vv": 44235, "gr": "-", "aniv": "22/10", "status": "✅ OK", "vo": 2000, "pess": 1400, "or": 60000, "cpv": 120.0, "nlid": 1, "coord": "FERNANDO", "dob": "Vinicius Marchesi / Mota", "lid_pol": "Ver. Pres, Camara Cristiano Gayoto / Wilian Mendes / Marcos Segatti / Joelma Porto", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "NOVA ODESSA", "rg": "RMC", "pr": "⭐ A", "pref": "LEITINHO", "part": "PSD", "eleit": 46521, "vv": 34990, "gr": "4", "aniv": "24/05", "status": "✅ OK", "vo": 2000, "pess": 1400, "or": 130000, "cpv": 86.7, "nlid": 1, "coord": "EUDICE", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PAULíNIA", "rg": "RMC", "pr": "⭐ A", "pref": "DANILO BARROS", "part": "PL", "eleit": 86474, "vv": 64930, "gr": "15", "aniv": "28/02", "status": "⚠️ Atenção", "vo": 2000, "pess": 1400, "or": 0, "cpv": 0, "nlid": 0, "coord": "AMANDA", "dob": "Paulo Freire", "lid_pol": "Ex. Ver. Kiko", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PEDREIRA", "rg": "Circuito das Águas", "pr": "⭐ A", "pref": "FABIO POLIDORO", "part": "REPUBLICANOS", "eleit": 33673, "vv": 23724, "gr": "720", "aniv": "31/10", "status": "⚠️ Atenção", "vo": 2000, "pess": 1400, "or": 0, "cpv": 0, "nlid": 0, "coord": "LÉO", "dob": "Paulo Alexandre / Jonas Donizete / Denis Andida / PADRE SILVIO ANDREY", "lid_pol": "Vereador Paulela / Ver. Leo Cirilo", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SANTO ANTÔNIO DE POSSE", "rg": "RMC", "pr": "⭐ A", "pref": "RICARDO CORTEZ", "part": "MDB", "eleit": 16303, "vv": 12867, "gr": "1090", "aniv": "13/06", "status": "⚠️ Atenção", "vo": 2000, "pess": 1400, "or": 0, "cpv": 0, "nlid": 0, "coord": "ROMILSON", "dob": "Zaratini / Denis Andida / BRUNO WELINGTON", "lid_pol": "Vereadora Claudia Lala / MAURICIO COMISSO / BISPA SANDRA", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "VINHEDO", "rg": "RMC", "pr": "⭐ A", "pref": "DR. DARIO", "part": "PSD", "eleit": 64966, "vv": 41614, "gr": "23", "aniv": "02/04", "status": "✅ OK", "vo": 2000, "pess": 1400, "or": 48000, "cpv": 48.0, "nlid": 1, "coord": "JAIME", "dob": "Carlos Sampaio / Denis Andida", "lid_pol": "Sup. Cicero Cabelereiro / Vice Pref. Mineirinho", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "AMERICANA", "rg": "RMC", "pr": "🔵 B", "pref": "CHICO SARDELLI", "part": "PL", "eleit": 182544, "vv": 118124, "gr": "91", "aniv": "", "status": "⚠️ Atenção", "vo": 1500, "pess": 1050, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE", "dob": "Denis Andida / Eli Correia", "lid_pol": "Kaue Trevisan - Regiane", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "AMPARO", "rg": "Circuito das Águas", "pr": "🔵 B", "pref": "CARLOS ALBERTO", "part": "MDB", "eleit": 54340, "vv": 37757, "gr": "699", "aniv": "", "status": "✅ OK", "vo": 1500, "pess": 1050, "or": 300000, "cpv": 60.0, "nlid": 1, "coord": "RODRIGO", "dob": "Paulo Alexandre / Saulo Pedroso", "lid_pol": "Paulo Rossi", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ARARAS", "rg": "RMP", "pr": "🔵 B", "pref": "IRINEU MARRETTO", "part": "PSD", "eleit": 95992, "vv": 66441, "gr": "6", "aniv": "", "status": "⚠️ Atenção", "vo": 1500, "pess": 1050, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/SILVINO", "dob": "Paulo Alexandre / Renato Bolsonaro", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "COSMÓPOLIS", "rg": "", "pr": "🔵 B", "pref": "JUNIOR FELISBINO", "part": "PSD", "eleit": 44137, "vv": 30681, "gr": "20", "aniv": "30/11", "status": "✅ OK", "vo": 1500, "pess": 1050, "or": 255000, "cpv": 85.0, "nlid": 1, "coord": "MOSCA", "dob": "Carlos Sampaio / Saulo Pedroso", "lid_pol": "Sec. Elcio - Marcos Mosca - Pref. Junior", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "HORTOLÂNDIA", "rg": "RMC", "pr": "🔵 B", "pref": "ZEZÉ GOMES", "part": "REPUBLICANOS", "eleit": 160527, "vv": 110306, "gr": "13", "aniv": "19/05", "status": "⚠️ Atenção", "vo": 1500, "pess": 1050, "or": 0, "cpv": 0, "nlid": 0, "coord": "SIMONE", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ÁGUAS DE LINDÓIA", "rg": "Circuito das Águas", "pr": "🔵 B", "pref": "GERALDINHO MANTOVANI", "part": "PSD", "eleit": 13854, "vv": 10222, "gr": "2", "aniv": "16/11", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "RODRIGO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "BRAGANÇA PAULISTA", "rg": "", "pr": "🔵 B", "pref": "EDMIR CHEDID", "part": "UNIÃO", "eleit": 130000, "vv": 89140, "gr": "49", "aniv": "", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "HOLAMBRA", "rg": "RMC", "pr": "🔵 B", "pref": "FERNANDO CAPATO", "part": "PSD", "eleit": 12186, "vv": 7432, "gr": "286", "aniv": "27/10", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "CAPATO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "LIMEIRA", "rg": "RMP", "pr": "🔵 B", "pref": "MURILO FÉLIX", "part": "PODEMOS", "eleit": 219001, "vv": 151954, "gr": "4", "aniv": "15/09", "status": "✅ OK", "vo": 1000, "pess": 700, "or": 60000, "cpv": 60.0, "nlid": 1, "coord": "EUDICE", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MOGI-GUAÇU", "rg": "B Mogiana", "pr": "🔵 B", "pref": "RODRIGO FALSETTI", "part": "PSD", "eleit": 113236, "vv": 78466, "gr": "-", "aniv": "09/04", "status": "✅ OK", "vo": 1000, "pess": 700, "or": 80000, "cpv": 160.0, "nlid": 1, "coord": "FERNANDO", "dob": "Vinicius Marchesi", "lid_pol": "Sup. Dr. Gustavo Franco", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MONTE ALEGRE DO SUL", "rg": "Circuito das Águas", "pr": "🔵 B", "pref": "RAFA VESSAN", "part": "REPUBLICANOS", "eleit": 6320, "vv": 4612, "gr": "55", "aniv": "06/08", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "RODRIGO", "dob": "Paulo Alexandre / Saulo Pedroso", "lid_pol": "Alexandre Gritti", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PIRACAIA", "rg": "Bragantina", "pr": "🔵 B", "pref": "ANDRÉ ROGÉRIO", "part": "PL", "eleit": 21287, "vv": 15293, "gr": "15", "aniv": "16/06", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PIRACICABA", "rg": "RMP", "pr": "🔵 B", "pref": "HELINHO ZANATTA", "part": "PSD", "eleit": 314355, "vv": 204221, "gr": "8", "aniv": "01/08", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "WALTINHO", "dob": "Barjas Negri", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "RIO CLARO", "rg": "", "pr": "🔵 B", "pref": "GUSTAVO PERISSINOTTO", "part": "PSD", "eleit": 151683, "vv": 98882, "gr": "13", "aniv": "24/06", "status": "🔘 Sem dados", "vo": 1000, "pess": 700, "or": 120000, "cpv": 120.0, "nlid": 1, "coord": "EUDICE", "dob": "", "lid_pol": "", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SERRA NEGRA", "rg": "Circuito das Águas", "pr": "🔵 B", "pref": "ELMIR CHEDID", "part": "UNIÃO", "eleit": 22133, "vv": 15785, "gr": "188", "aniv": "23/09", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "", "lid_pol": "Rodrigo Oliveira", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SOCORRO", "rg": "Circuito das Águas", "pr": "🔵 B", "pref": "MAURICIO DE OLIVEIRA SANTOS", "part": "PSD", "eleit": 29703, "vv": 22635, "gr": "8", "aniv": "09/08", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SUMARÉ", "rg": "RMC", "pr": "🔵 B", "pref": "HENRIQUE DO PARAÍSO", "part": "REPUBLICANOS", "eleit": 203032, "vv": 128744, "gr": "23", "aniv": "26/07", "status": "✅ OK", "vo": 1000, "pess": 700, "or": 18000, "cpv": 25.7, "nlid": 8, "coord": "AMANDA", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "VALINHOS", "rg": "RMC", "pr": "🔵 B", "pref": "FRANKLIN", "part": "PL", "eleit": 91947, "vv": 63870, "gr": "17", "aniv": "28/05", "status": "⚠️ Atenção", "vo": 1000, "pess": 700, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAIME", "dob": "Carlos Sampaio / Denis Andida", "lid_pol": "Victor Manprine", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "BOM JESUS DOS PERDÕES", "rg": "Bragantina", "pr": "⚪ C", "pref": "SÉRGIO FERREIRA", "part": "PSDB", "eleit": 18215, "vv": 13150, "gr": "2", "aniv": "", "status": "⚠️ Atenção", "vo": 500, "pess": 350, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ENGENHEIRO COELHO", "rg": "", "pr": "⚪ C", "pref": "PEDRO FRANCO", "part": "MDB", "eleit": 15028, "vv": 11130, "gr": "8", "aniv": "19/05", "status": "🔘 Sem dados", "vo": 500, "pess": 350, "or": 40000, "cpv": 80.0, "nlid": 1, "coord": "MOSCA", "dob": "", "lid_pol": "", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ITUPEVA", "rg": "Circuito das Frutas", "pr": "⚪ C", "pref": "ROGÉRIO CAVALIN", "part": "MDB", "eleit": 48947, "vv": 32682, "gr": "1", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 500, "pess": 350, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAMES/SENA", "dob": "Paulo Alexandre / Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "LINDÓIA", "rg": "Circuito das Águas", "pr": "⚪ C", "pref": "LUCIANO LOPES", "part": "MDB", "eleit": 5890, "vv": 4421, "gr": "2", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 500, "pess": 350, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "Paulo Alexandre / Saulo Pedroso", "lid_pol": "Vice Pref. Luis Claudio - PSD -  Pref. Luciano", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MONTE MOR", "rg": "RMC", "pr": "⚪ C", "pref": "MURILO RINALDI", "part": "PP", "eleit": 46681, "vv": 32271, "gr": "26", "aniv": "24/03", "status": "⚠️ Atenção", "vo": 500, "pess": 350, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAIME", "dob": "Denis Andida", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ELIAS FAUSTO", "rg": "RMP", "pr": "⚪ C", "pref": "TATO BICUDO", "part": "PODEMOS", "eleit": 13653, "vv": 10549, "gr": "-", "aniv": "30/11", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE", "dob": "", "lid_pol": "Rangel", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "IRACEMAPÓLIS", "rg": "BM", "pr": "⚪ C", "pref": "LNELITA MICHEL", "part": "PL", "eleit": 17604, "vv": 13226, "gr": "-", "aniv": "03/05", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE", "dob": "João Cury", "lid_pol": "Ver, João Cleber / Felipe Marcelo", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ITAPIRA", "rg": "B Mogiana", "pr": "⚪ C", "pref": "TONINHO BELLINI", "part": "PSD", "eleit": 53672, "vv": 36619, "gr": "78", "aniv": "24/10", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "FERNANDO", "dob": "Paulo Alexandre", "lid_pol": "Silvino - Rodrigo", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ITATIBA", "rg": "RMC", "pr": "⚪ C", "pref": "DR THOMÁS", "part": "PSD", "eleit": 83073, "vv": 59404, "gr": "12", "aniv": "01/11", "status": "✅ OK", "vo": 300, "pess": 210, "or": 75000, "cpv": 100.0, "nlid": 1, "coord": "EUDICE/SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "JARINÚ", "rg": "RMJ", "pr": "⚪ C", "pref": "DÉBORA PRADO", "part": "PSD", "eleit": 26516, "vv": 19220, "gr": "-", "aniv": "17/04", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAMES", "dob": "Paulo Alexandre / Saulo Pedroso", "lid_pol": "Sec Gov Sebastião", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "JOANÓPOLIS", "rg": "Bragantina", "pr": "⚪ C", "pref": "CRISTIANO DA EMA", "part": "REPUBLICANOS", "eleit": 7885, "vv": 7436, "gr": "-", "aniv": "17/08", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PINHALZINHO", "rg": "Bragantina", "pr": "⚪ C", "pref": "TIÃO ZANARDI", "part": "PSD", "eleit": 11327, "vv": 8386, "gr": "2", "aniv": "03/05", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "Paulo Alexandre / Saulo Pedroso", "lid_pol": "Alexandre Zito", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "VÁRZEA PAULISTA", "rg": "RMJ", "pr": "⚪ C", "pref": "PROFESSOR RODOLFO", "part": "PSD", "eleit": 85407, "vv": 57793, "gr": "1", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 300, "pess": 210, "or": 0, "cpv": 0, "nlid": 0, "coord": "JAMES", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "FRANCISCO MORATO", "rg": "RMSP", "pr": "⚪ C", "pref": "ILDO GUSMÃO", "part": "REPUBLICANOS", "eleit": 126443, "vv": 79874, "gr": "-", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 200, "pess": 140, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "", "lid_pol": "Silvino Cintra", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "NAZARÉ PAULISTA", "rg": "Bragantina", "pr": "⚪ C", "pref": "PROFESSORA GUINHA", "part": "UNIÃO", "eleit": 14574, "vv": 11003, "gr": "-", "aniv": "21/11", "status": "⚠️ Atenção", "vo": 200, "pess": 140, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "RIO DAS PEDRAS", "rg": "RMP", "pr": "⚪ C", "pref": "MARCOS BUZETTO", "part": "REPUBLICANOS", "eleit": 25912, "vv": 19034, "gr": "-", "aniv": "10/07", "status": "⚠️ Atenção", "vo": 200, "pess": 140, "or": 0, "cpv": 0, "nlid": 0, "coord": "MOSCA/EUDICE", "dob": "", "lid_pol": "Rangel", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "TUIUTI", "rg": "Bragantina", "pr": "⚪ C", "pref": "", "part": "PSB", "eleit": 5514, "vv": 4309, "gr": "1", "aniv": "19/05", "status": "⚠️ Atenção", "vo": 200, "pess": 140, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "Saulo Pedroso / Paulo Alexandre", "lid_pol": "Prefeito Careca - Nande", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "VARGEM", "rg": "Bragantina", "pr": "⚪ C", "pref": "LEO ALVES", "part": "UNIÃO", "eleit": 6509, "vv": 4752, "gr": "-", "aniv": "30/12", "status": "⚠️ Atenção", "vo": 200, "pess": 140, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ESTIVA GERBI", "rg": "", "pr": "⚪ C", "pref": "MARCIO PAVAN", "part": "SOLIDARIEDADE", "eleit": 9616, "vv": 7779, "gr": "2", "aniv": "19/05", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "FERNANDO", "dob": "Vinicius Marchesi", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "IGARATÁ", "rg": "Vale", "pr": "⚪ C", "pref": "GABRIEL PRIANTI", "part": "REPUBLICANOS", "eleit": 9442, "vv": 7411, "gr": "1", "aniv": "05/12", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MOMBUCA", "rg": "RMP", "pr": "⚪ C", "pref": "PALITINHO", "part": "PL", "eleit": 2726, "vv": 2572, "gr": "-", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SALTINHO", "rg": "RMP", "pr": "⚪ C", "pref": "HELINHO BERNARDINHO", "part": "PL", "eleit": 7071, "vv": 5356, "gr": "-", "aniv": "19/05", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SANTA MARIA DA SERRA", "rg": "RMP", "pr": "⚪ C", "pref": "ZANI", "part": "PSD", "eleit": 4371, "vv": 3263, "gr": "8", "aniv": "27/10", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "SÃO PEDRO", "rg": "RMP", "pr": "⚪ C", "pref": "THIAGO SILVA", "part": "PSD", "eleit": 28760, "vv": 19008, "gr": "73", "aniv": "22/02", "status": "⚠️ Atenção", "vo": 150, "pess": 105, "or": 0, "cpv": 0, "nlid": 0, "coord": "RANGEL", "dob": "", "lid_pol": "Rangel", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ÁGUAS DE SÃO PEDRO", "rg": "RMP", "pr": "⚪ C", "pref": "JOÃO VITOR", "part": "PL", "eleit": 4301, "vv": 3075, "gr": "-", "aniv": "25/07", "status": "⚠️ Atenção", "vo": 100, "pess": 70, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE", "dob": "", "lid_pol": "Rangel", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}, {"nm": "ATIBAIA", "rg": "", "pr": "⚪ C", "pref": "", "part": "", "eleit": 0, "vv": 78628, "gr": "7", "aniv": "", "status": "⚠️ Atenção", "vo": 100, "pess": 70, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "MORUNGABA", "rg": "RMC", "pr": "⚪ C", "pref": "FERNANDÃO", "part": "UNIÃO", "eleit": 10609, "vv": 7847, "gr": "1", "aniv": "29/06", "status": "⚠️ Atenção", "vo": 100, "pess": 70, "or": 0, "cpv": 0, "nlid": 0, "coord": "EUDICE/RODRIGO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "PEDRA BELA", "rg": "Bragantina", "pr": "⚪ C", "pref": "DERLEI", "part": "UNIÃO", "eleit": 4845, "vv": 3984, "gr": "-", "aniv": "06/04", "status": "⚠️ Atenção", "vo": 100, "pess": 70, "or": 0, "cpv": 0, "nlid": 0, "coord": "SILVINO", "dob": "Paulo Alexandre", "lid_pol": "", "status_dob": "Confirmada", "obs": "", "lid1": "", "lid2": ""}, {"nm": "RAFARD", "rg": "RMP", "pr": "⚪ C", "pref": "FABINHO", "part": "REPUBLICANOS", "eleit": 7116, "vv": 5603, "gr": "-", "aniv": "21/03", "status": "⚠️ Atenção", "vo": 100, "pess": 70, "or": 0, "cpv": 0, "nlid": 0, "coord": "RANGEL", "dob": "", "lid_pol": "Rangel", "status_dob": "Disponível", "obs": "", "lid1": "", "lid2": ""}];
+const COORDS = {"ROMILSON/NENE": ["JAGUARIÚNA"], "LUIZ LAURO": ["CAMPINAS"], "CAPATO": ["ARTUR NOGUEIRA", "HOLAMBRA"], "JAMES": ["JUNDIAÍ", "JARINÚ", "VÁRZEA PAULISTA"], "EUDICE": ["SANTA BÁRBARA D’OESTE", "NOVA ODESSA", "AMERICANA", "LIMEIRA", "RIO CLARO", "ELIAS FAUSTO", "IRACEMAPÓLIS", "ÁGUAS DE SÃO PEDRO"], "JAMES/SENA": ["LOUVEIRA", "ITUPEVA"], "FERNANDO": ["MOGI-MIRIM", "MOGI-GUAÇU", "ITAPIRA", "ESTIVA GERBI"], "AMANDA": ["PAULíNIA", "SUMARÉ"], "LÉO": ["PEDREIRA"], "ROMILSON": ["SANTO ANTÔNIO DE POSSE"], "JAIME": ["VINHEDO", "VALINHOS", "MONTE MOR"], "RODRIGO": ["AMPARO", "ÁGUAS DE LINDÓIA", "MONTE ALEGRE DO SUL"], "EUDICE/SILVINO": ["ARARAS", "ITATIBA"], "MOSCA": ["COSMÓPOLIS", "ENGENHEIRO COELHO"], "SIMONE": ["HORTOLÂNDIA"], "SILVINO": ["BRAGANÇA PAULISTA", "PIRACAIA", "BOM JESUS DOS PERDÕES", "JOANÓPOLIS", "FRANCISCO MORATO", "NAZARÉ PAULISTA", "VARGEM", "IGARATÁ", "MOMBUCA", "SALTINHO", "SANTA MARIA DA SERRA", "ATIBAIA", "PEDRA BELA"], "WALTINHO": ["PIRACICABA"], "EUDICE/RODRIGO": ["SERRA NEGRA", "SOCORRO", "LINDÓIA", "PINHALZINHO", "TUIUTI", "MORUNGABA"], "MOSCA/EUDICE": ["RIO DAS PEDRAS"], "RANGEL": ["SÃO PEDRO", "RAFARD"]};
+const FOTO = "data:image/jpeg;base64,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";
+
+let prFilt="", busFilt="";
+
+function fmt(n){ return n>0 ? n.toLocaleString('pt-BR') : '—'; }
+function fmtR(n){ return n>0 ? 'R$ '+n.toLocaleString('pt-BR') : '—'; }
+function initials(n){ const p=n.split(/[\s\/]/); return (p[0][0]+(p[1]?p[1][0]:'')).toUpperCase(); }
+function baCls(p){ return p.includes('A')?'ba-a':p.includes('B')?'ba-b':'ba-c'; }
+function baTxt(p){ return p.includes('A')?'⭐ A':p.includes('B')?'🔵 B':'⚪ C'; }
+function priLabel(p){ return p.includes('A')?'A':p.includes('B')?'B':'C'; }
+
+function renderPA(){
+  const a = C.filter(c=>c.pr.includes('A'));
+  const mx = Math.max(...a.map(c=>c.vo));
+  document.getElementById('list-a').innerHTML = a.map(c=>`
+    <div class="city-row" onclick="openCity(${JSON.stringify(c.nm)})">
+      <div style="flex:1;min-width:0">
+        <div class="city-nm">${c.nm}</div>
+        <div class="city-rg">${c.rg||'—'} · Coord: ${c.coord||'—'}</div>
+        <div class="pbr"><div class="pbf" style="width:${Math.round(c.vo/mx*100)}%"></div></div>
+      </div>
+      <div style="margin-left:12px;text-align:right;flex-shrink:0">
+        <div class="city-meta">${fmt(c.vo)}</div>
+        <div class="city-sub">${c.or?fmtR(c.or):'Orç. a definir'}</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>`).join('');
+}
+
+function renderCidades(){
+  let data = C.filter(c=>{
+    const okP = !prFilt || c.pr.includes(prFilt);
+    const okB = !busFilt || c.nm.toLowerCase().includes(busFilt) || c.rg.toLowerCase().includes(busFilt);
+    return okP && okB;
+  });
+  document.getElementById('c-list').innerHTML = data.map(c=>`
+    <div class="city-row" onclick="openCity(${JSON.stringify(c.nm)})">
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="ba ${baCls(c.pr)}">${priLabel(c.pr)}</span>
+          <span class="city-nm">${c.nm}</span>
+        </div>
+        <div class="city-rg" style="margin-top:2px">${c.rg||'—'} · ${c.coord||'—'}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:10px">
+        <div class="city-meta">${fmt(c.vo)}</div>
+        <div class="city-sub">${c.or?fmtR(c.or):'S/ orç.'}</div>
+      </div>
+      <div class="arrow">›</div>
+    </div>`).join('');
+  document.getElementById('c-cnt').textContent = `${data.length} cidades`;
+}
+
+function openCity(nm){
+  const c = C.find(x=>x.nm===nm);
+  if(!c) return;
+
+  const disp = !c.dob || c.dob==='DISPONÍVEL' || c.status_dob==='Disponível';
+
+  // Montar linhas de dobrada
+  const dobLines = c.dob ? c.dob.split('/').map(d=>d.trim()).filter(Boolean) : [];
+  const dobRows = dobLines.length > 0
+    ? dobLines.map(d=>`<tr><td>${d}</td><td style="color:var(--tx2);font-size:11px">${c.coord||'—'}</td><td style="color:var(--tx2);font-size:11px">${c.lid_pol||'—'}</td><td></td></tr>`).join('')
+    : `<tr><td colspan="4" style="text-align:center;color:var(--tx3);font-style:italic">Sem dobrada confirmada</td></tr>`;
+
+  document.getElementById('dp-body').innerHTML = `
+
+    <!-- HERO -->
+    <div class="city-hero">
+      <div class="city-hero-inner">
+        <div class="city-foto"><img src="${FOTO}" alt="Gustavo Reis"></div>
+        <div class="city-hero-info">
+          <div class="city-hero-nome">GUSTAVO REIS</div>
+          <div class="city-hero-sub">Deputado Estadual 2026</div>
+          <div style="margin-top:8px;display:inline-block;background:rgba(255,255,255,.15);border:.5px solid rgba(255,255,255,.3);border-radius:6px;padding:4px 12px">
+            <div style="font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em">Município</div>
+            <div style="font-size:15px;font-weight:700;color:#fff;font-family:'Syne',sans-serif">${c.nm}</div>
+          </div>
+        </div>
+      </div>
+      <div class="city-votos-grid">
+        <div class="cv-box">
+          <div class="cv-label">Previsão de votos</div>
+          <div class="cv-val">${fmt(c.vo)}</div>
+        </div>
+        <div class="cv-box" style="background:rgba(183,28,28,.25)">
+          <div class="cv-label">Meta conservadora</div>
+          <div class="cv-val pess">${fmt(c.pess)}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO STRIP -->
+    <div class="info-strip">
+      <div class="is-box">
+        <div class="is-label">Eleitores</div>
+        <div class="is-val">${fmt(c.eleit)}</div>
+      </div>
+      <div class="is-box">
+        <div class="is-label">Votos Válidos</div>
+        <div class="is-val">${fmt(c.vv)}</div>
+      </div>
+      <div class="is-box">
+        <div class="is-label">G.R. 2022</div>
+        <div class="is-val">${c.gr}</div>
+      </div>
+    </div>
+    <div class="info-strip" style="border-bottom:.5px solid var(--cb)">
+      <div class="is-box">
+        <div class="is-label">Prioridade</div>
+        <div class="is-val"><span class="ba ${baCls(c.pr)}">${baTxt(c.pr)}</span></div>
+      </div>
+      <div class="is-box">
+        <div class="is-label">Orçamento</div>
+        <div class="is-val" style="font-size:11px">${c.or?fmtR(c.or):'A definir'}</div>
+      </div>
+      <div class="is-box">
+        <div class="is-label">Aniversário</div>
+        <div class="is-val">${c.aniv||'—'}</div>
+      </div>
+    </div>
+
+    <div class="dp-sec">
+
+      <!-- DOBRADAS / COORDENAÇÃO / LIDERANÇA -->
+      <div class="dp-card">
+        <div class="dp-card-head">
+          <span>🤝 Dobrada · Coordenação · Liderança Política</span>
+        </div>
+        <table class="dob-tbl">
+          <thead>
+            <tr>
+              <th>Dobrada Dep. Federal</th>
+              <th>Coordenação Política</th>
+              <th>Liderança Política</th>
+              <th>Expectativa de Voto</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${dobRows}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- PREFEITO -->
+      <div class="dp-card">
+        <div class="dp-card-head vd"><span>🏛️ Dados do Município</span></div>
+        <div class="fr"><span style="color:var(--tx2)">Prefeito</span><span class="fv">${c.pref||'—'}${c.part?' ('+c.part+')':''}</span></div>
+        ${c.lid1?`<div class="fr"><span style="color:var(--tx2)">Liderança local</span><span class="fv" style="text-align:right;max-width:60%">${c.lid1}${c.lid2?' / '+c.lid2:''}</span></div>`:''}
+        ${c.obs?`<div class="fr"><span style="color:var(--tx2)">Obs.</span><span style="font-size:12px;color:var(--tx2);text-align:right;max-width:60%">${c.obs}</span></div>`:''}
+      </div>
+
+      <!-- AÇÕES PLACEHOLDER -->
+      <div class="dp-card">
+        <div class="dp-card-head am"><span>📅 Ações na cidade</span></div>
+        <div class="acoes-ph">
+          <div class="acoes-ph-icon">📋</div>
+          <div class="acoes-ph-txt">Nenhuma ação registrada ainda</div>
+          <div class="acoes-ph-sub">As ações serão registradas aqui conforme o report semanal for atualizado</div>
+          <div class="acoes-ph-btn">+ Adicionar ação</div>
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById('dpanel').classList.add('open');
+  document.getElementById('dp-body').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closePanel(){
+  document.getElementById('dpanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderCoords(){
+  document.getElementById('l-btns').innerHTML = Object.keys(COORDS).map(nm=>`
+    <button class="lbtn" onclick="selCoord(this,'${nm.replace(/'/g,"\\'")}')">
+      <div class="lbtn-av">${initials(nm)}</div>
+      <div class="lbtn-nm">${nm}</div>
+      <div class="lbtn-sb">${COORDS[nm].length} cidade${COORDS[nm].length!==1?'s':''}</div>
+    </button>`).join('');
+}
+
+function selCoord(btn, nm){
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const cids = COORDS[nm].map(n=>C.find(c=>c.nm===n)).filter(Boolean);
+  const tot = cids.reduce((s,c)=>s+c.vo,0);
+  document.getElementById('ld-av').textContent = initials(nm);
+  document.getElementById('ld-nm').textContent = nm;
+  document.getElementById('ld-sb').textContent = `${cids.length} cidade${cids.length!==1?'s':''}`;
+  document.getElementById('ld-meta').textContent = tot.toLocaleString('pt-BR')+' votos';
+  document.getElementById('ld-body').innerHTML = cids.map(c=>`
+    <tr class="cl" onclick="openCity(${JSON.stringify(c.nm)})">
+      <td style="font-weight:500">${c.nm}</td>
+      <td><span class="ba ${baCls(c.pr)}">${priLabel(c.pr)}</span></td>
+      <td class="num" style="font-weight:700;color:var(--az)">${fmt(c.vo)}</td>
+      <td class="num" style="color:var(--tx2)">${c.or?fmtR(c.or):'—'}</td>
+    </tr>`).join('');
+  document.getElementById('ld-detail').style.display = 'block';
+  setTimeout(()=>document.getElementById('ld-detail').scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+
+function tab(btn, id){
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setPr(btn, p){ document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); prFilt=p; renderCidades(); }
+function filtraC(v){ busFilt=v.toLowerCase(); renderCidades(); }
+
+let tx0=0;
+document.getElementById('dpanel').addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;},{passive:true});
+document.getElementById('dpanel').addEventListener('touchend',e=>{if(e.changedTouches[0].clientX-tx0>60)closePanel();},{passive:true});
+
+renderPA(); renderCidades(); renderCoords();
+</script>
+</body>
+</html>
